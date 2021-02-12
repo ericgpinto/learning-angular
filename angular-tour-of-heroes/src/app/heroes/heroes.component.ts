@@ -1,3 +1,4 @@
+import { HeroService } from './hero.service';
 import { HEROES } from './mock-heroes';
 import { Hero } from './Hero';
 import { Component, OnInit } from '@angular/core';
@@ -23,9 +24,16 @@ export class HeroesComponent implements OnInit {
     name: 'Windstorm'
   };
 
-  constructor() { }
+  getHeroes(): void {
+    this.heroService.getHeroes()
+        .subscribe(heroes => this.heroes = heroes);
+  }
+
+  constructor(private heroService: HeroService) { }
 
   ngOnInit() {
+
+    this.getHeroes();
   }
 
 }
